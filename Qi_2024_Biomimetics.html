@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>The Effect of Spanwise Folding on the Aerodynamic Performance of a Passively Deformed Flapping Wing – Visualization</title>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: 'Noto Sans KR', 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f5f5f5;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .slide {
+            width: 1680px;
+            min-height: 720px;
+            position: relative;
+            background: white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            margin: 20px 0;
+        }
+        .header {
+            background: #005b96;
+            color: white;
+            padding: 20px 30px;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .title {
+            font-size: 26px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        .authors {
+            font-size: 15px;
+            margin-bottom: 4px;
+        }
+        .journal {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+        .summary-container {
+            background: #f0f5fa;
+            padding: 12px 30px;
+            border-bottom: 1px solid #e1e5e8;
+            max-width: 100%;
+        }
+        .summary-title {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #005b96;
+        }
+        .summary {
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        .content {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(2, auto);
+            gap: 15px;
+            padding: 15px;
+            flex: 1;
+        }
+        .section {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            max-height: 320px;
+            overflow-y: auto;
+        }
+        .section-title {
+            color: #005b96;
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            padding-bottom: 5px;
+            border-bottom: 2px solid #005b96;
+        }
+        .section-content {
+            font-size: 13px;
+            line-height: 1.6;
+            overflow-y: visible;
+        }
+        .term {
+            font-weight: bold;
+            color: #005b96;
+        }
+        .bullet {
+            margin-left: 8px;
+            text-indent: -8px;
+            padding-left: 8px;
+            margin-bottom: 6px;
+        }
+        .bullet:before {
+            content: "• ";
+            color: #005b96;
+        }
+        .eng {
+            color: #666;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="slide">
+        <div class="header">
+            <div class="title">The Effect of Spanwise Folding on the Aerodynamic Performance of a Passively Deformed Flapping Wing</div>
+            <div class="authors">Ming Qi, Menglong Ding, Wenguo Zhu, Shu Li</div>
+            <div class="journal">Biomimetics, Vol. 9, Article 42 (2024)</div>
+        </div>
+
+        <div class="summary-container">
+            <div class="summary-title">논문 요약</div>
+            <div class="summary">
+                본 연구는 새(조류)의 <span class="term">경간 방향 폴딩<span class="eng">(spanwise folding)</span></span>과 <span class="term">수동 비틀림<span class="eng">(passive torsion)</span></span>의 결합이 플랩형 날개(플래핑 윙)의 양력·추력 및 추진 효율에 미치는 효과를 정량적으로 해석했다. 이를 위해 <span class="term">3차원 패널 기법<span class="eng">(3‑D panel method)</span></span>과 <span class="term">선형 빔 요소 모델<span class="eng">(linear beam element)</span></span>을 연성하여 <span class="term">유체‑구조 상호작용<span class="eng">(FSI)</span></span>을 구현하였다. 다양한 플랩‑폴딩 위상, 평균 폴딩 각, 내부 날개 플랩 각을 조합한 10개의 사례(case)를 통해 초기 기하학적 비틀림 분포가 성능에 미치는 경향을 분석하였다. 결과적으로 플랩‑폴딩 위상과 평균 폴딩 각의 설계가 양력 손실 최소화와 추력 집중에 핵심적임을 보여주며, 최적 설계를 위한 지침을 제시한다.
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="section">
+                <div class="section-title">Introduction: 연구 동기</div>
+                <div class="section-content">
+                    <div class="bullet">대형 조류는 비행 중 <span class="term">다자유도 운동<span class="eng">(multi‑DOF motion)</span></span>을 수행하여 고효율 비행을 달성함.</div>
+                    <div class="bullet">그중 <span class="term">경간 폴딩<span class="eng">(spanwise folding)</span></span>은 하강·상승 시 순환 영역을 조절해 양력‑추력 생산을 극대화.</div>
+                    <div class="bullet">폴딩과 동시에 발생하는 <span class="term">수동 비틀림 변형<span class="eng">(passive torsional deformation)</span></span>이 공력 성능에 미치는 정량적 영향은 아직 불명확.</div>
+                    <div class="bullet">전통 <span class="term">단층 와류 격자<span class="eng">(single‑layer VLM)</span></span>는 압력 분포 예측이 불가해 설계 초기 단계 지침이 제한적.</div>
+                    <div class="bullet"><span class="term">Navier–Stokes 해석<span class="eng">(N‑S CFD)</span></span>는 정확하지만 설계 반복에 부적합할 정도로 계산 비용이 높음.</div>
+                    <div class="bullet">따라서 신속‑정확한 설계 도구 개발과 설계 변수(위상·각·강성)별 효과 규명이 요구됨.</div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-title">Related Works: 관련 연구</div>
+                <div class="section-content">
+                    <div class="bullet">Send 등(2012): SmartBird 실험을 통해 폴딩이 양력·추력 증대에 기여함을 보고. <span class="eng">[Send et al., 2012]</span></div>
+                    <div class="bullet">Kim 등(2018): 4‑bar 폴딩 메커니즘을 장착한 조류형 MAV 비행 시험. <span class="eng">[Kim et al., 2018]</span></div>
+                    <div class="bullet">Han(2009): 패널 기법으로 폴딩 시 더 큰 추력 확보 확인. 단, 비틀림 미고려. <span class="eng">[Han, 2009]</span></div>
+                    <div class="bullet">Yang 등(2024): <span class="term">UVLM<span class="eng">(unsteady vortex lattice)</span></span> 기반 형상·운동 최적화 연구. <span class="eng">[Yang et al., 2024]</span></div>
+                    <div class="bullet">Verstraete 등(2015): 갈매기형 폴딩 윙의 플러터 속도 영향 분석. <span class="eng">[Verstraete et al., 2015]</span></div>
+                    <div class="bullet">Chen & Yeh(2021): 폴딩 각 진폭이 호버링 시 상승력에 미치는 영향 실험. <span class="eng">[Chen & Yeh, 2021]</span></div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-title">Method: 새로운 접근 방법</div>
+                <div class="section-content">
+                    <div class="bullet"><span class="term">3‑D 비정상 패널 기법<span class="eng">(unsteady panel method)</span></span>으로 표면 압력계수(C<sub>p</sub>) 직접 계산.</div>
+                    <div class="bullet"><span class="term">선형 빔 요소<span class="eng">(linear beam)</span></span>를 이용한 외익(passive) 비틀림 해석.</div>
+                    <div class="bullet"><span class="term">Newmark‑β 적분<span class="eng">(time integration)</span></span>으로 FSI 동적 평형을 확보.</div>
+                    <div class="bullet">내익‑외익을 0.45–0.55 경간으로 분할, 외익은 플랩·폴딩·수동 비틀림 자유도 부여.</div>
+                    <div class="bullet">10개 사례: 위상 ϕ<sub>β</sub>(0°–90°), 평균 폴딩 β<sub>mean</sub>(0°/30°), 내익 플랩 β<sub>in_max</sub>(20°/30°) 조합.</div>
+                    <div class="bullet">초기 기하학 비틀림 θ<sub>geo</sub>를 −10°~+2° 범위로 스윕하여 성능 그래프화.</div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-title">Experiment: 실험 방법과 결과</div>
+                <div class="section-content">
+                    <div class="bullet">캐나다 거위형 날개: 반경간 0.8&nbsp;m, AR 12, 루트코드 0.3&nbsp;m.</div>
+                    <div class="bullet">비행 속도 15&nbsp;m/s, 스트루할 수 <span class="term">St</span>=0.167, 감쇠주파수 <span class="term">k</span>=0.095.</div>
+                    <div class="bullet">외익 강성 <span class="term">GJ</span> ∝ y<sup>4</sup>로 가정하여 실물 제작 가능성 고려.</div>
+                    <div class="bullet">Lift(양력)·Thrust(추력)·Power(동력) 계수를 주기 평균으로 도출.</div>
+                    <div class="bullet">역‑검증: Lin(2005)·DeLaurier(1993) 데이터와 비교해 오차 &lt;5% 확인.</div>
+                    <div class="bullet">최적 사례(Case 4, θ<sub>geo</sub>=−7°)에서 Cl 0.623 / Ct 0.069 / η<sub>P</sub> 0.584 달성.</div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-title">Discussion: 결과의 해석</div>
+                <div class="section-content">
+                    <div class="bullet">큰 ϕ<sub>β</sub>는 외익 속도를 완화해 상행 플랩 양력 손실을 줄임.</div>
+                    <div class="bullet">양의 β<sub>mean</sub>은 상행 시 폴딩을 유도, 순양력 유지에 기여.</div>
+                    <div class="bullet">β<sub>in_max</sub> 증가 시 추력 증가하지만 외익 유효 AoA 급증 위험.</div>
+                    <div class="bullet">초기 비틀림 θ<sub>geo</sub>는 외익 AoA를 세밀히 조절해 분리(separation) 억제.</div>
+                    <div class="bullet">비틀림‑폴딩 상호작용이 동체 안정성과 플러터 안전한계에 영향.</div>
+                    <div class="bullet">패널‑빔 연성 모델은 설계 초기 단계에서 CFD 대비 𝟙∕𝟚 시간 이내 결과 제공.</div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-title">Conclusion: 최종 요약</div>
+                <div class="section-content">
+                    <div class="bullet">폴딩‑플랩 위상(ϕ<sub>β</sub>)과 평균 폴딩(β<sub>mean</sub>)의 조합이 양력·추력 효율 최대화에 핵심.</div>
+                    <div class="bullet">내익 플랩 각(β<sub>in_max</sub>)은 추력을 조정하는 주 파라미터이나 과도 시 효율 저하 유의.</div>
+                    <div class="bullet">초기 기하학 비틀림(θ<sub>geo</sub>)을 β<sub>mean</sub>과 매칭하여 외익 AoA ≤15° 권장.</div>
+                    <div class="bullet">제안된 패널‑빔 FSI 모델은 빠른 설계 탐색 및 실제 제작 지침 제공.</div>
+                    <div class="bullet">향후 연구: 점성 효과 포함, 현장 비행 시험과의 상호 검증 필요.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
